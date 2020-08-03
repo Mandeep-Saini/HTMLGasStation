@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>My Home Page</title>
+         <meta charset="utf-8">
+         <link rel="stylesheet" type="text/css" href="css/main.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+        <script>
+            (function() {
+	
+	function Slideshow( element ) {
+		this.el = document.querySelector( element );
+		this.init();
+	}
+	
+	Slideshow.prototype = {
+		init: function() {
+			this.wrapper = this.el.querySelector( ".slider_wrapper" );
+			this.slides = this.el.querySelectorAll( ".slide" );
+			this.previous = this.el.querySelector( ".slider_prev" );
+			this.next = this.el.querySelector( ".slider_next" );
+			this.index = 0;
+			this.total = this.slides.length;
+			this.timer = null;
+			
+			this.action();
+			this.stopStart();	
+		},
+		_slideTo: function( slide ) {
+			var currentSlide = this.slides[slide];
+			currentSlide.style.opacity = 1;
+			
+			for( var i = 0; i < this.slides.length; i++ ) {
+				var slide = this.slides[i];
+				if( slide !== currentSlide ) {
+					slide.style.opacity = 0;
+				}
+			}
+		},
+		action: function() {
+			var self = this;
+			self.timer = setInterval(function() {
+				self.index++;
+				if( self.index == self.slides.length ) {
+					self.index = 0;
+				}
+				self._slideTo( self.index );
+				
+			}, 3000);
+		},
+		stopStart: function() {
+			var self = this;
+			self.el.addEventListener( "mouseover", function() {
+				clearInterval( self.timer );
+				self.timer = null;
+				
+			}, false);
+			self.el.addEventListener( "mouseout", function() {
+				self.action();
+				
+			}, false);
+		}
+		
+		
+	};
+	
+	document.addEventListener( "DOMContentLoaded", function() {
+		
+		var slider = new Slideshow( "#main_slider" );
+		
+	});
+	
+	
+})();
+        
+        </script>
+    </head>
+    <body>
+        <div id="wrapper">
+            <header>
+            <img src="images/logo.PNG" width="100" height="100">
+                <p>M2G Gas Station</p>
+            </header>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="Products.html">Our Products</a></li>
+                    
+                    <li><a href="Careers.html">Careers</a></li>
+                    <li><a href="Contact.html">Contact Us</a></li>
+                     
+                </ul>
+               <a class="log" href="login.html">Sign in<i class="fa fa-sign-in"></i></a>
+            </nav>
+            <main>
+               	
+
+                
+
+                <div id="row">
+                    <h1 class="h1">Welcome to the M2G Gas Station</h1>
+                    <h3>M2G opened in 2000</h3>
+                    <div id="grid">
+                        <div class="box">
+                            <i class="fa fa-clock-o fa-index" style="font-size:70px; color: white; padding-top:15px;"></i>
+                            <h2>How we work</h2>
+                            <p>We are open 24 - hours. Cooperative staff. Reasonable prices for fuel. Proud to be the only Oil & Energy Company on LinkedIn’s Top Attractors list</p>
+                        </div>
+                        <div class="box">
+                           <i class="fa fa-flag fa-index" style="font-size:70px; color: white; padding-top:15px;"></i>
+                            <h2>Where to find us</h2>
+                            <p>Homer Watson <br/>Kitchener, Ontario <br/>Zip code- N2E2K1 <br/>+1 879 456 4567</p> 
+                        </div>
+                        <div class="box">
+                            <i class="fa fa-fire fa-index" style="font-size:70px; color: white; padding-top:15px;"></i>
+                            <h2>Our fuel quality</h2>
+                            <p>Backed by advanced science and technology, Synergy Diesel Efficient fuel is engineered to provide fuel economy benefits in diesel cars and trucks, as well as in commercial vehicles</p>
+                        </div>
+                        <div class="box">
+                            <i class="fa fa-trophy fa-index" style="font-size:70px; color: white; padding-top:15px"></i>
+                            <h2>Awards</h2>
+                            <p>Proud to be the only Oil & Energy Company on LinkedIn’s Top Attractors list, Shell has won awards across Canada and worldwide for our commitment to excellence as an employer.</p>
+                        </div>
+                    </div>
+                </div>
+                    <h2>Alternative Fuels</h2>
+                    <h3>Most alternative fuels are ecologically more acceptable than petrol or diesel</h3> 
+                    <div class="flex-container">
+                        <div>
+                            <img src="images/filling-station-1839760_1920.jpg" width="200" height="150">
+                            <h4>Who we are?</h4>
+                            <p>Welcome to M2G, one of Ontario’s largest independent gasoline retailers. If you’ve ever been to one of our over 140 locations across Ontario.</p>
+                            <button class="btn"><a href="index.html" >Learn More <i class="fa fa-arrow-right"></i> </a> </button>
+                        </div>
+                        <div>
+                            <img src="images/supermarket-507295_1920.jpg" width="200" height="150">
+                            <h4>Our Products</h4>
+                            <p>Low gas prices, first-rate service and whatever you need to make your road trip success.We carry food. We provide High quality diesel.</p>
+                             <button class="btn"><a href="products.html" >Learn More <i class="fa fa-arrow-right"></i> </a> </button>
+                        </div>
+                        <div>
+                            <img src="images/fuel-2741_640.jpg" width="200" height="150">
+                            <h4>Prices</h4>
+                            <p>Low gas prices, first-rate service and whatever you need to make your road trip success.We carry food. We provide High quality diesel.</p>
+                             <button class="btn"><a href="index.html" >Learn More <i class="fa fa-arrow-right"></i> </a> </button>
+                        </div>  
+                        <div>
+                            <img src="images/men-1979261_1920.jpg" width="200" height="150">
+                            <h4>Career with M2G</h4>
+                            <p>We hire Machenical engineers, professionals and new graduates.We also have vacancies for Cashier, car washer, sweeper.</p>
+                             <button class="btn"><a href="Careers.html" >Learn More <i class="fa fa-arrow-right"></i> </a> </button>
+                        </div>
+                        
+                        
+                </div>
+                <div id="row1">
+                    <h2>FIND M2G GAS STATIONS IN YOUR REGION <button id="button"><a  href="contact.html" >Search Here</a></button></h2>
+                </div>
+               <div id="row2">
+                   <h1>About Us</h1>
+                   <p>Welcome to M2G, one of Ontario’s largest independent gasoline retailers. If you’ve ever been to one of our over 140 locations across Ontario. <br/>If you’ve ever been to one of our over 140 locations across Ontario you already know you can count on us for low gas prices, first-rate service and whatever you need to make your road trip a success.We carry beverages fit for energizing, satisfying, warming up, cooling down or just plain quenching your thirst. <br/>We provide High quality diesel is in greater demand than ever. We’ve got your food solutions, too - whether it’s for on-the-go, at work or anywhere in-between… treat time, lunch time, anytime! We’ll supply the everyday necessities for your fridge, your family, your first aid kit or your traveling tool box.<br/> Fuel up, oil up and tidy up your car. One stop at Circle K and you’re ready to take on your day. No matter why you’re stopping or who you’re with, just come as you are…we’ll be here ready and waiting for you! We are open 24 - hours. Cooperative staff. Reasonable prices for fuel. Proud to be the only Oil & Energy Company on LinkedIn’s Top Attractors list</p>
+                </div>
+                <hr/>
+               
+
+           
+                    
+                
+            
+            </main>
+            <footer class="main_footer">
+
+            <div class="left_footer">
+
+                <p class="footer-links">
+                    <a href="index.html">Home</a>
+                    <a href="Products.html">Our Products</a>
+                    <a href="Careers.html">Careers</a>
+                    <a href="Contact.html">Contact Us</a>
+                </p>
+                <p class="footer_company">M2G &copy; 2019 Edition</p>
+            </div>
+
+            <div class="footer_center">
+                <div>
+                    <p>Address:</p>
+                    <p>Homer Watson, Kitchener, ON</p>
+                </div>
+
+                <div>
+                    <p>Phone Number:</p>
+                    <p>+1 000 123456</p>
+                </div>
+
+                <div>
+                    <p>Email:</p>
+                    <p><a href="mailto:m2g.kaur@yahoo.com">m2g@company.com</a></p>
+                </div>
+
+            </div>
+
+            <div class="right_footer">
+
+                <p class="footer_about">
+                    <span>About the company</span>
+                    Gas Station Website 
+                </p>
+                <div>
+                    <i class="fa fa-facebook-official" style="font-size:40px;color:white; margin:7px;"></i>
+                    <i class="fa fa-google-plus-square" style="font-size:40px;color:white; margin:7px;"></i>
+                    <i class="fa fa-linkedin-square" style="font-size:40px;color:white; margin:7px;"></i>
+                    <i class="fa fa-pinterest-square" style="font-size:40px;color:white; margin:7px;"></i>
+                   
+                </div>
+                
+
+            </div>
+
+        </footer>
+
+        
+        
+        
+        
+        </div>
+    </body>
+
+</html>

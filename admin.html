@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>My Home Page</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="css/base.css" rel="stylesheet">
+    <link href="css/swichTab.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+
+
+
+</head>
+
+<body>
+    <div id="wrapper">
+         <header>
+            <img src="images/logo.PNG" width="100" height="100">
+                <p>M2G Gas Station</p>
+            </header>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="Products.html">Our Products</a></li>
+                    <li><a href="Careers.html">Careers</a></li>
+                    <li><a href="Contact.html">Contact Us</a></li>
+                     
+                </ul>
+               <a class="log" href="index.html">Sign out<i class="fa fa-sign-out"></i></a>
+            </nav>
+        <main>
+
+            <hr>
+            <div id="carosuel"></div>
+            <div style="text-align:center">
+                <span class="dot" onclick="currentSlide(1)"></span>
+                <span class="dot" onclick="currentSlide(2)"></span>
+                <span class="dot" onclick="currentSlide(3)"></span>
+                <span class="dot" onclick="currentSlide(4)"></span>
+                <span class="dot" onclick="currentSlide(5)"></span>
+            </div>
+            
+            <h2>Admin</h2>
+            <p>We hire Machenical engineers, professionals and new graduates.we also have vacancies for Cashier, car washer, sweeper.And anyone looking for M2G jobs at a gas station , they can directly apply .</p>
+
+            <div class="tabGroup tabGroup2">
+                <ul class="swichtab-controller">
+                    <li data-swichtab="controller"><a href="#tab1">Add New Product</a></li>
+                    <li data-swichtab="controller"><a href="#tab2">Resume Uploaded</a></li>
+                    <li data-swichtab="controller"><a href="#tab3">Contact Details</a></li>
+                </ul>
+                <div>
+                    <div id="tab1" class="swichtab-panel" data-swichtab="target">
+                        <div id="box">
+                            <div id="AppCat">
+                            <div id="titad">Select the Application category:</div>
+                            <select id="app" onchange="myFunction()">
+                                <option value="">--select--</option>
+                                <option value="1">Engine Oil and Tools</option>
+                                <option value="2">Food</option>
+                                <option value="3">Spare Parts</option>
+                            </select>
+                            <br>
+                            <div id="subCategory"><input type="text" onfocus="myFunction(this)" id="asubcat" placeholder="Add Subcategory">
+                                <input type="file" id="subcat" onchange="previewFile(event)"><br>
+                                <img src="" id="previewsrc" height="200" alt="Image preview...">
+                                <br /><button class="button" onclick="addSubCategory()">submit</button></div>
+                                </div>
+                            <div class="flex-container1">
+                                <div id="health">Engine Oil and Tools</div>
+                                <div id="fun">Food</div>
+                                <div id="social">Spare Parts</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="tab2" class="swichtab-panel" data-swichtab="target">
+                        <div><button onclick="getdata()">Check Resume</button></div>
+                        <div id="carrer"></div>
+                    </div>
+
+                    <div id="tab3" class="swichtab-panel" data-swichtab="target">
+                       <div><button onclick="getContactDetail()">Contact Details</button></div>  
+                        <div id="contact"></div>
+                    </div>
+                </div>
+                <!-- /.swichtab-contents -->
+            </div>
+
+
+            <script src="js/app.js"></script>
+            <script src="js/jquery.swichTab.js"></script>
+            <script src="js/admin.js"></script>             
+           
+
+        </main>
+       <footer class="main_footer">
+
+            <div class="left_footer">
+
+                <p class="footer-links">
+                    <a href="index.html">Home</a>
+                    <a href="Products.html">Our Products</a>
+                    <a href="Careers.html">Careers</a>
+                    <a href="Contact.html">Contact Us</a>
+                </p>
+                <p class="footer_company">M2G &copy; 2019 Edition</p>
+            </div>
+
+            <div class="footer_center">
+                <div>
+                    <p>Address:</p>
+                    <p>Homer Watson, Kitchener, ON</p>
+                </div>
+
+                <div>
+                    <p>Phone Number:</p>
+                    <p>+1 000 123456</p>
+                </div>
+
+                <div>
+                    <p>Email:</p>
+                    <p><a href="mailto:m2g.kaur@yahoo.com">m2g@company.com</a></p>
+                </div>
+
+            </div>
+
+            <div class="right_footer">
+
+                <p class="footer_about">
+                    <span>About the company</span>
+                    Gas Station Website 
+                </p>
+                <div>
+                    <i class="fa fa-facebook-official" style="font-size:40px;color:white; margin:7px;"></i>
+                    <i class="fa fa-google-plus-square" style="font-size:40px;color:white; margin:7px;"></i>
+                    <i class="fa fa-linkedin-square" style="font-size:40px;color:white; margin:7px;"></i>
+                    <i class="fa fa-pinterest-square" style="font-size:40px;color:white; margin:7px;"></i>
+                   
+                </div>
+                
+
+            </div>
+
+        </footer>
+
+        
+
+
+
+
+    </div>
+</body>
+
+</html>

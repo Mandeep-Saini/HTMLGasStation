@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>My Home Page</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+</head>
+
+<body ng-app="testApp" ng-controller="mainCtrl">
+    <div id="wrapper">
+       <header>
+            <img src="images/logo.PNG" width="100" height="100">
+                <p>M2G Gas Station</p>
+            </header>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="Products.html">Our Products</a></li>
+                    
+                    <li><a href="Careers.html">Careers</a></li>
+                    <li><a href="Contact.html">Contact Us</a></li>
+                     
+                </ul>
+               <a class="log" href="login.html">Sign in<i class="fa fa-sign-in"></i></a>
+            </nav>
+            
+        <main>
+
+            <img src="Images/men-1979261_1920.jpg" height="500" width="1063" style="margin-left:12%;">
+
+            <hr>
+            <h2>Career</h2>
+            <p>We hire Machenical engineers, professionals and new graduates.we also have vacancies for Cashier, car washer, sweeper.And anyone looking for M2G jobs at a gas station , they can directly apply .</p>
+
+
+            <form ng-submit="submit()" name="myForm">
+                <div class="container">
+                    <h1>Application Form</h1>
+
+                    <hr>
+                    <span ng-show="error" ng-model="user.error" class="reg" id="error"></span>
+                    <label for="text"><b>Name</b></label>
+                    <input class="reg" type="text" placeholder="Enter Your Name" ng-model="user.name" name="name" required>
+                    <label for="email"><b>Email</b></label>
+                    <input class="reg" type="email" placeholder="Enter Email" ng-model="user.email" name="email" required>
+
+                    <label for="psw"><b>Mobile Number</b></label>
+                    <input class="reg" placeholder="Enter Mobile Number" ng-focus="mob" ng-model="user.mobile" name="mob" required>
+                    <span class="error" ng-show="errorMob">
+                       Add the mobile number with 10 digits</span>
+
+                    <label for="psw"><b>Province</b></label>
+                    <select class="reg" type="text" ng-change="change()" required ng-model="user.province" name="province">
+                        <option value="0">select</option>
+                        <option value="1">Ontario</option>
+                        <option value="2">British Columbia</option>
+                    </select>
+                    <label for="text"><b>City</b></label>
+                    <select ng-model="user.city1" name="City1" ng-show="ont" class="reg" id="ont">
+                        <option value="1">kitchener</option>
+                        <option value="2">Burlington</option>
+                    </select>
+                    <select ng-model="user.city2" name="City2" ng-show="bc" class="reg" id="bc">
+                        <option value="1">Vancouver</option>
+                        <option value="2">Surrey</option>
+                    </select>
+                    <label for="hrs"><b>Prefer Number of Hours</b></label>
+                    <input class="reg" type="number" placeholder="Enter your Country" ng-model="user.hours" name="hrs" required>
+                    <label for="text"><b>Upload your Resume</b></label>
+                    <input class="reg"  onchange="angular.element(this).scope().setFile(this)" required type="file" id="file">
+                    <span class="error" ng-show="errorFile">Upload only docxs or pdf</span>
+                     <span class="error" ng-show="successFile">Uploaded</span>
+                    <hr>
+
+
+                    <button type="clear"  class="clrbtn">Clear</button>
+                    <input type="submit" value="Submit" class="subbtn" value="Apply">
+                </div>
+
+            </form>
+
+
+
+            <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.8/angular.min.js"></script>
+            <script>
+                var arrayLocal=[];
+                var app = angular.module('testApp', []);
+                var result = [];
+                var selectedCity = 0;
+                var index="";
+                var filename;
+                  var isValid=1;
+                app.controller('mainCtrl', ['$scope', function($scope) {
+                     $scope.errorFile = false;
+                $scope.errorMob = false;
+                     $scope.successFile = false; 
+                          
+                    debugger;
+                    $scope.successFile = false; 
+                    $scope.setFile = function(element) {
+                        debugger;
+                    $scope.$apply(function($scope) {
+                        $scope.theFile = element.files[0];
+                        $scope.FileMessage = '';
+                         filename = $scope.theFile.name;
+                        console.log(filename.length)
+                        index = filename.lastIndexOf(".");
+                        
+                    })
+                    }
+                    $scope.submit = function($event) {
+                        if ($scope.user.mobile.length < 10 || $scope.user.mobile.length > 10) {
+                            $scope.errorMob = true;
+ isValid=0;
+                        }
+                      
+                      
+                       
+                        var strsubstring = filename.substring(index, filename.length);
+                        if (strsubstring == '.pdf' || strsubstring == '.doc')
+                        {
+                          $scope.successFile = true; 
+                            $scope.errorFile = false;
+                        }
+                       else{
+                            $scope.successFile = false; 
+                           $scope.errorFile = true;
+                           isValid=0
+                       }
+                        /************ Adding data to Local Storage using objects *************/
+                        var city="";
+                        var province="";
+                        if($scope.user.province=="1")
+                            {
+                                province="Ontario";
+                                if($scope.user.city1=="1")
+                                    {
+                                       city="Burlington"; 
+                                    }
+                                else{
+                                    city="Kitchener";
+                                }
+                            }
+                        else{
+                            province="British Columbia";
+                            if($scope.user.city2=="1")
+                                    {
+                                       city="Burlington"; 
+                                    }
+                                else{
+                                    city="Kitchener";
+                                }
+                        }
+                     if(localStorage.getItem("Careers")==undefined)
+                        {
+                            arrayLocal=$scope.user.mobile+","+$scope.user.name+","+$scope.user.email+","+$scope.user.hours+","+filename+","+city+","+province+"||";
+                        }
+                        else{
+                           arrayLocal=arrayLocal+$scope.user.mobile+","+$scope.user.name+","+$scope.user.email+","+$scope.user.hours+","+filename+","+city+","+province+"||"; 
+                        }
+                       localStorage.setItem("Careers",arrayLocal);
+                      if(isValid==0)
+                          {
+                              $event.preventDefault();
+                          }
+
+                        else{
+                           
+                        }
+                    };
+                    $scope.change = function() {
+                        var province = ($scope.user.province);
+                        switch (province) {
+                            case "1":
+                                $scope.ont = true;
+                                $scope.bc = false;
+                                break;
+                            case "2":
+                                $scope.bc = true;
+                                $scope.ont = false;
+                                break;
+                            case "0":
+                                $scope.bc = false;
+                                $scope.ont = false;
+                                break;
+                            default:
+                                 $scope.bc = false;
+                                $scope.ont = false;
+                                break;
+                        }
+
+                    }
+                    
+                   
+
+                
+
+
+
+                }]);
+            </script>
+
+
+
+
+
+
+
+        </main>
+       <footer class="main_footer">
+
+            <div class="left_footer">
+
+                <p class="footer-links">
+                    <a href="index.html">Home</a>
+                    <a href="Products.html">Our Products</a>
+                    <a href="price.html">Price</a>
+                    <a href="Careers.html">Careers</a>
+                    <a href="Contact.html">Contact Us</a>
+                </p>
+                <p class="footer_company">M2G &copy; 2019 Edition</p>
+            </div>
+
+            <div class="footer_center">
+                <div>
+                    <p>Address:</p>
+                    <p>Homer Watson, Kitchener, ON</p>
+                </div>
+
+                <div>
+                    <p>Phone Number:</p>
+                    <p>+1 000 123456</p>
+                </div>
+
+                <div>
+                    <p>Email:</p>
+                    <p><a href="mailto:m2g.kaur@yahoo.com">m2g@company.com</a></p>
+                </div>
+
+            </div>
+
+            <div class="right_footer">
+
+                <p class="footer_about">
+                    <span>About the company</span>
+                    Gas Station Website 
+                </p>
+                <div>
+                    <i class="fa fa-facebook-official" style="font-size:40px;color:white; margin:7px;"></i>
+                    <i class="fa fa-google-plus-square" style="font-size:40px;color:white; margin:7px;"></i>
+                    <i class="fa fa-linkedin-square" style="font-size:40px;color:white; margin:7px;"></i>
+                    <i class="fa fa-pinterest-square" style="font-size:40px;color:white; margin:7px;"></i>
+                   
+                </div>
+                
+
+            </div>
+
+        </footer>
+
+        
+
+
+
+    </div>
+</body></html>

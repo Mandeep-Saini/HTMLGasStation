@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>My Home Page</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            var msg = "";
+            var emailPattern = /\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}\b/;
+            var phoneno = /^\d{10}$/;
+
+            $("#frm").submit(
+                function(event) {
+                    $("#error").html("");
+                    var isValid = true;
+                    var name = $("#name").val().trim();
+                    if (name == "") {
+                        isValid = false;
+                        $("#error").append("Name Required<br>");
+                        $("#name").css("border-color", "darkred");
+                    }
+                    var message = $("#message").val().trim();
+                    if (message == "") {
+                        debugger;
+                        $("#message").css("border-color", "darkred");
+                        $("#error").append("Message Required<br>");
+                        isValid = false;
+                    }
+                    debugger;
+                    var email = $("#email").val().trim();
+                    if (email == "") {
+                        debugger;
+                        $("#email").css("border-color", "darkred");
+                        $("#error").append("Email Required <br>");
+                        isValid = false;
+                    } else {
+                        if (!emailPattern.test(email)) {
+                            debugger;
+                            isValid = false;
+                            $("#error").append("Email pattern wrong Required <br>");
+                            $("#email").css("border-color", "darkred");
+                        }
+                    }
+                    var number = $("#mob").val().trim();
+                    if (number == "") {
+                        isValid = false;
+                        $("#error").append("Mobile Required <br>");
+                        $("#mob").css("border-color", "darkred");
+                    } else {
+                        if (!phoneno.test(number)) {
+                            debugger;
+                            isValid = false;
+                            $("#error").append("Mobile Format Required <br>");
+                            $("#mob").css("border-color", "darkred");
+                        }
+                    }
+                    if (!isValid) {
+                        event.preventDefault();
+                    } else {
+                        $("#mob").css("border-color", "grey");
+                        $("#email").css("border-color", "grey");
+                        $("#name").css("border-color", "grey");
+                        $("#message").css("border-color", "grey");
+                        if (localStorage.getItem("Contact") == undefined) {
+                            msg = name + "," + email + "," + number + "," + message + "||";
+                        } else {
+                            msg = msg + name + "," + email + "," + number + "," + message + "||";
+
+                        }
+                        localStorage.setItem("Contact", msg);
+                        window.load("Contact.html");
+                    }
+
+                });
+        });
+
+    </script>
+
+</head>
+
+<body>
+    <div id="wrapper">
+        <header>
+            <img src="images/logo.PNG" width="100" height="100">
+                <p>M2G Gas Station</p>
+            </header>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="Products.html">Our Products</a></li>
+                    
+                    <li><a href="Careers.html">Careers</a></li>
+                    <li><a href="Contact.html">Contact Us</a></li>
+                     
+                </ul>
+               <a class="log" href="login.html">Sign in<i class="fa fa-sign-in"></i></a>
+            </nav>
+            
+        <main>
+          
+            <div class="mapouter"><div class="gmap_canvas"><iframe width="1060" height="500" id="gmap_canvas" src="https://maps.google.com/maps?q=534+Beaumont+Cres,+Kitchene&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe><a href="https://www.emojilib.com">emojilib.com</a></div><style>.mapouter{position:relative;text-align:right;height:500px;width:600px;overflow:hidden;margin-left:25%; }.gmap_canvas {overflow:hidden;background:none!important;height:500px;width:600px;margin-top:10px;}</style></div>
+            <div id="row_x">
+                <h1>GET IN TOUCH</h1>
+                <h3>Our teams are here to help you......</h3>
+                <p>Do you have questions or comments about our products and services? Call us: 7 am – 10 pm ET. Our M2G customer survey allows you to tell us how we’re doing. Complete the survey and be entered into our quarterly contest to win free gas for a year.</p>
+            </div>
+            <div id="grid_box">
+                <div class="div"> <i class="fa fa-envelope" style="font-size:85px; color: red;"></i>
+                    <h3><a href="mailto:gurjitkaur7106@gmail.com" style="text-decoration: none; color: black;">m2g@company.com</a></h3>
+                </div>
+                <div class="div"> <i class="fa fa-mobile-phone" style="font-size:85px; color: red;"></i>
+                    <h3>+1 876 416 8765</h3>
+                </div>
+                <div class="div"> <i class="fa fa-map-marker" style="font-size:85px; color: red;"></i>
+                    <h3>534 Beaumont Crescent<br>Kitchener, ON</h3>
+                </div>
+
+            </div>
+            <div id="contact">
+                <span id="error"></span>
+                <form id="frm" name="myForm">
+                    <h1>Contact Us</h1>
+                    <div class="con">
+                        <div class="in_val">
+                            <input class="reg0" type="text" placeholder="*Your Name" id="name" autofocus>
+                        </div>
+                        <input class="reg1" type="text" placeholder="*Your Email" id="email">
+
+                        <input class="reg2" type="text" placeholder="000-000-0000" id="mob">
+
+                        <textarea type="text" placeholder="*Your Message" name="mob" rols="5" cols="15" id="message"></textarea>
+
+                        <input type="submit" id="submit" class="sub1" value="Submit">
+                    </div>
+                </form>
+            </div>
+
+        </main>
+        <footer class="main_footer">
+
+            <div class="left_footer">
+
+                <p class="footer-links">
+                    <a href="index.html">Home</a>
+                    <a href="Products.html">Our Products</a>
+                    <a href="price.html">Price</a>
+                    <a href="Careers.html">Careers</a>
+                    <a href="Contact.html">Contact Us</a>
+                </p>
+                <p class="footer_company">M2G &copy; 2019 Edition</p>
+            </div>
+
+            <div class="footer_center">
+                <div>
+                    <p>Address:</p>
+                    <p>Homer Watson, Kitchener, ON</p>
+                </div>
+
+                <div>
+                    <p>Phone Number:</p>
+                    <p>+1 000 123456</p>
+                </div>
+
+                <div>
+                    <p>Email:</p>
+                    <p><a href="mailto:m2g.kaur@yahoo.com">m2g@company.com</a></p>
+                </div>
+
+            </div>
+
+            <div class="right_footer">
+
+                <p class="footer_about">
+                    <span>About the company</span>
+                    Gas Station Website
+                </p>
+                <div>
+                    <i class="fa fa-facebook-official" style="font-size:40px;color:white; margin:7px;"></i>
+                    <i class="fa fa-google-plus-square" style="font-size:40px;color:white; margin:7px;"></i>
+                    <i class="fa fa-linkedin-square" style="font-size:40px;color:white; margin:7px;"></i>
+                    <i class="fa fa-pinterest-square" style="font-size:40px;color:white; margin:7px;"></i>
+
+                </div>
+
+
+            </div>
+
+        </footer>
+
+
+
+
+
+
+
+    </div>
+</body>
+
+
+</html>
